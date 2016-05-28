@@ -8,6 +8,11 @@
         <input type="password" class="form-control" id="loginPassword" ng-model="loginPassword">
         <br>
         <button type="submit" class="btn btn-default">Login</button>
+        <br>
+        <div class="alert alert-danger fade in" role="alert" ng-show="loginError != null">
+            <button type="button" class="close" data-dismiss="alert" aria-label="close">&times;</button>
+            {{ loginError }}
+        </div>
     </form>
 </div>
 <div class="form-group col-md-6">
@@ -28,6 +33,10 @@
         <label for="registerPassword">Password</label>
         <input type="password" class="form-control" id="registerPassword" ng-model="registerPassword">
         <br>
+        <div class="alert alert-danger fade in" role="alert" ng-show="registrationError != null">
+            <button type="button" class="close" data-dismiss="alert" aria-label="close">&times;</button>
+            {{ registrationError }}
+        </div>
         <button type="submit" class="btn btn-default">Register</button>
     </form>
 </div>

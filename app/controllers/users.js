@@ -21,7 +21,7 @@ app.controller('users', function ($scope, $rootScope, $http, $location, resource
                 city: city
             }).then(function (response) {
         }, function (response) {
-            console.log(response.data);
+            $scope.registrationError = response.data;
         })
     }
 
@@ -40,7 +40,7 @@ app.controller('users', function ($scope, $rootScope, $http, $location, resource
                 $location.path('/home');
             },
             function(response){
-                console.log(response.data);
+                $scope.loginError = response.data;
             })
     }
 

@@ -17,6 +17,7 @@ app.controller('doctors', function ($scope, $http, $routeParams, resources, BASE
         console.log($routeParams.id);
         $http.get(BASE_URL + resources.doctors + $routeParams.id)
             .then(function (response) {
+                console.log(response);
                 $scope.doctor = response.data;
             })
     };

@@ -3,7 +3,7 @@
  */
 var app = angular.module('doctorsApp', ['ngRoute']);
 
-// var baseUrl = "https://skript-projekat.herokuapp.com/api";
+//var baseUrl = "https://skript-projekat.herokuapp.com/api";
 var baseUrl = "http://localhost:3000/api";
 
 app.constant("BASE_URL", baseUrl);
