@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="doctorsApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Find a Doctor</title>
+    <link rel="stylesheet" href="../styles/style.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous">
+    </script>
+</head>
+<body>
+<div class="container" ng-include="'header.html'"></div>
+<div ng-view></div>
+<script src="../../app.js"></script>
+<script type="text/javascript" src="../../controllers/doctors.js"></script>
+<script type="text/javascript" src="../../controllers/ordinations.js"></script>
+<script type="text/javascript" src="../../controllers/users.js"></script>
+</body>
+</html>

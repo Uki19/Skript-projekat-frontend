@@ -1,0 +1,5 @@
+<div ng-init="getDoctors()">
+    <ul ng-repeat="doctor in doctors">
+        <li><a href="#/doctors/{{ doctor.id }}">{{ doctor.name }}</a></li>
+    </ul>
+</div>
