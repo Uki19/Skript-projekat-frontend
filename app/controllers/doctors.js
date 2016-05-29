@@ -4,7 +4,7 @@
 var app = angular.module('doctorsApp');
 
 
-app.controller('doctors', function ($scope, $http, $routeParams, resources, BASE_URL) {
+app.controller('doctors', function ($scope, $rootScope, $http, $routeParams, resources, BASE_URL) {
 
     $scope.getDoctors = function () {
         $http.get(BASE_URL + resources.doctors)
@@ -17,7 +17,6 @@ app.controller('doctors', function ($scope, $http, $routeParams, resources, BASE
         console.log($routeParams.id);
         $http.get(BASE_URL + resources.doctors + $routeParams.id)
             .then(function (response) {
-                console.log(response);
                 $scope.doctor = response.data;
             })
     };
@@ -33,7 +32,22 @@ app.controller('doctors', function ($scope, $http, $routeParams, resources, BASE
         $http.post(BASE_URL + resources.doctors, $scope.newDoctor)
             .then(function (response) {
                 $scope.doctors.push(newDoctor);
-                console.log(response);
-            })
+            });
+    };
+
+    $scope.postDoctorReview = function() {
+        console.log($rootScope.currentUser);
+        var newReview = {
+            title: $scope.title,
+            comment: $scope.comment,
+            stars: $scope.stars,
+            authorId: $rootScope.currentUser.id,
+            doctorId: $routeParams.id
+        };
+        $http.post(BASE_URL + resources.doctors + $routeParams.id + resources.reviews, newReview)
+            .then(function(response){
+                // $scope.doctor.reviews.push(response.data);
+                $scope.getDoctor();
+            });
     }
 });

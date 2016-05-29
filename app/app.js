@@ -12,6 +12,7 @@ app.value('resources',{
     userLogin:      "/users/login",
     userRegister:   "/users/register",
     doctors:        "/doctors/",
+    reviews:        "/reviews/",
     ordinations:    "/ordinations/"
 });
 
