@@ -1,0 +1,6 @@
+<div class="alert alert-info" ng-show="showLoadingIndicator">Loading...</div>
+<div ng-init="getOrdinations()">
+    <ul ng-repeat="ordination in ordinations">
+        <li><a ng-href="#/ordinations/{{ ordination.id }}">{{ ordination.name }}</a></li>
+    </ul>
+</div>

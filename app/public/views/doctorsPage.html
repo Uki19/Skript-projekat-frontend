@@ -1,5 +1,11 @@
+<div class="alert alert-info" ng-show="showLoadingIndicator">Loading...</div>
 <div ng-init="getDoctors()">
-    <ul ng-repeat="doctor in doctors">
-        <li><a ng-href="#/doctors/{{ doctor.id }}">{{ doctor.name }}</a></li>
-    </ul>
+    <div ng-repeat="doctor in doctors" class="col-md-3">
+        <div>
+            <a ng-href="#/doctors/{{ doctor.id }}">
+                <img class="img-responsive" ng-src="{{ doctor.imageUrl }}">
+                {{ doctor.name }}
+            </a>
+        </div>
+    </div>
 </div>

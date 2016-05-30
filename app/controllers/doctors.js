@@ -4,11 +4,13 @@
 var app = angular.module('doctorsApp');
 
 
-app.controller('doctors', function ($scope, $rootScope, $http, $routeParams, resources, BASE_URL) {
+app.controller('doctors', function ($scope, $rootScope, $http, $routeParams, BASE_URL, resources) {
 
     $scope.getDoctors = function () {
+        $scope.showLoadingIndicator = true;
         $http.get(BASE_URL + resources.doctors)
             .then(function (response) {
+                $scope.showLoadingIndicator = false;
                 $scope.doctors = response.data;
             });
     };
