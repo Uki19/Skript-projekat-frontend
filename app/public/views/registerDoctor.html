@@ -1,0 +1,34 @@
+<div ng-if="currentUser.doctorId">
+    <p>You are already registred as doctor.</p>
+</div>
+<div ng-if="!currentUser.doctorId">
+    <div class="col-md-3"></div>
+    <div class="form-group col-md-6">
+        <h2>Register as Doctor</h2>
+        <form ng-submit="postDoctor()">
+            <label for="doctorName">Name</label>
+            <input type="text" class="form-control" id="doctorName" ng-model="doctorName"
+                   placeholder="{{currentUser.firstname + ' ' + currentUser.lastname}}">
+            <br>
+            <label for="doctorDesc">Description</label>
+            <input type="text" class="form-control" id="doctorDesc" ng-model="doctorDesc">
+            <br>
+            <label for="category">Category</label>
+            <select id="category" name="category" class="form-control" ng-init="getDoctorCategories()">
+                <option ng-repeat="category in allCategories">{{ category.name }}</option>
+            </select>
+            <br>
+            <label for="ordination">Ordination</label>
+            <select name="ordination" id="ordination" class="form-control" ng-init="getOrdinations()">
+                <option>None</option>
+                <option ng-repeat="ordination in ordinations">{{ ordination.name }}</option>
+            </select>
+            <br>
+            <div class="alert alert-danger fade in" role="alert" ng-show="registrationError != null">
+                <button type="button" class="close" data-dismiss="alert" aria-label="close">&times;</button>
+                {{ registrationError }}
+            </div>
+            <button type="submit" class="btn btn-default">Register</button>
+        </form>
+    </div>
+</div>

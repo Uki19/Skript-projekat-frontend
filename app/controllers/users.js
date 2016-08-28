@@ -23,7 +23,7 @@ app.controller('users', function ($scope, $rootScope, $http, $location, resource
         }, function (response) {
             $scope.registrationError = response.data;
         })
-    }
+    };
 
     $scope.login = function() {
         var email = $scope.loginEmail;
@@ -37,6 +37,7 @@ app.controller('users', function ($scope, $rootScope, $http, $location, resource
             })
             .then(function(response){
                 $rootScope.currentUser = response.data;
+                console.log($rootScope.currentUser);
                 $location.path('/home');
             },
             function(response){

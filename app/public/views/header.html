@@ -5,10 +5,16 @@
             <li><a ng-href="#/ordinations">Ordinations</a></li>
             <li><a ng-href="#/doctors">Doctors</a></li>
         </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a ng-href="#/login">Login</a></li>
-            <li><a ng-href="#/register">Register</a></li>
-        </ul>
-
+        <div ng-if="!currentUser">
+            <ul class="nav navbar-nav navbar-right">
+                    <li><a ng-href="#/login">Login</a></li>
+                    <li><a ng-href="#/register">Register</a></li>
+            </ul>
+        </div>
+        <div ng-if="currentUser">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a ng-href="#/registerDoctor">Register As Doctor</a></li>
+            </ul>
+        </div>
     </div>
 </nav>

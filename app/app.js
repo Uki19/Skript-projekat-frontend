@@ -13,7 +13,8 @@ app.value('resources',{
     userRegister:   "/users/register",
     doctors:        "/doctors/",
     reviews:        "/reviews/",
-    ordinations:    "/ordinations/"
+    ordinations:    "/ordinations/",
+    categories:    "/categories/"
 });
 
 app.config(function ($routeProvider) {
@@ -28,20 +29,29 @@ app.config(function ($routeProvider) {
             controller: 'doctors'
         })
         .when('/doctors', {
+            // resolve: authenticationResolver,
             templateUrl: 'doctorsPage.html',
             controller: 'doctors'
         })
         .when('/doctors/:id', {
+            // resolve: authenticationResolver,
             templateUrl: 'doctorPage.html',
             controller: 'doctors'
         })
         .when('/ordinations', {
+            // resolve: authenticationResolver,
             templateUrl: 'ordinationsPage.html',
             controller: 'ordinations'
         })
         .when('/ordinations/:id', {
+            // resolve: authenticationResolver,
             templateUrl: 'ordinationPage.html',
             controller: 'ordinations'
+        })
+        .when('/registerDoctor', {
+            // resolve: authenticationResolver,
+            templateUrl: 'registerDoctor.html',
+            controller: 'doctorRegistration'
         })
         .otherwise({
             redirectTo: '/'

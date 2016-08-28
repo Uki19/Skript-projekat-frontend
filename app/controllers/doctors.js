@@ -4,7 +4,7 @@
 var app = angular.module('doctorsApp');
 
 
-app.controller('doctors', function ($scope, $rootScope, $http, $routeParams, BASE_URL, resources) {
+app.controller('doctors', function ($scope, $rootScope, $http, $routeParams, BASE_URL, resources ) {
 
     $scope.getDoctors = function () {
         $scope.showLoadingIndicator = true;
@@ -23,19 +23,22 @@ app.controller('doctors', function ($scope, $rootScope, $http, $routeParams, BAS
             })
     };
 
-    $scope.postDoctor = function () {
-        var ordinationId = 1;
-        var newDoctor = {
-            name: $scope.newDoctorName,
-            description: $scope.newDoctorDescription,
-            ordinationId: $scope.newDoctorOrdinationId
-        };
-        $scope.newDoctorOrdinationId = ordinationId;
-        $http.post(BASE_URL + resources.doctors, $scope.newDoctor)
-            .then(function (response) {
-                $scope.doctors.push(newDoctor);
-            });
-    };
+    // $scope.postDoctor = function () {
+    //     var ordinationId = 1;
+    //     var userId = $rootScope.currentUser.id;
+    //     var newDoctor = {
+    //         name: $scope.doctorName,
+    //         description: $scope.doctorDesc,
+    //         ordinationId: ordinationId,
+    //         userId: userId
+    //     };
+    //     $scope.newDoctorOrdinationId = ordinationId;
+    //     $http.post(BASE_URL + resources.doctors, newDoctor)
+    //         .then(function (response) {
+    //             console.log("added");
+    //         });
+    // };
+
 
     $scope.postDoctorReview = function() {
         console.log($rootScope.currentUser);
@@ -48,8 +51,12 @@ app.controller('doctors', function ($scope, $rootScope, $http, $routeParams, BAS
         };
         $http.post(BASE_URL + resources.doctors + $routeParams.id + resources.reviews, newReview)
             .then(function(response){
-                // $scope.doctor.reviews.push(response.data);
-                $scope.getDoctor();
+                response.data.author = {
+                    firstname: $rootScope.currentUser.firstname,
+                    lastname: $rootScope.currentUser.lastname
+                };
+                $scope.doctor.reviews.push(response.data);
+                // $scope.getDoctor();
             });
     }
 });
