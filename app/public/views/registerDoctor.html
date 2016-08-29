@@ -7,21 +7,21 @@
         <h2>Register as Doctor</h2>
         <form ng-submit="postDoctor()">
             <label for="doctorName">Name</label>
-            <input type="text" class="form-control" id="doctorName" ng-model="doctorName"
+            <input type="text" class="form-control" id="doctorName" ng-model="newDoctor.name"
                    placeholder="{{currentUser.firstname + ' ' + currentUser.lastname}}">
             <br>
             <label for="doctorDesc">Description</label>
-            <input type="text" class="form-control" id="doctorDesc" ng-model="doctorDesc">
+            <input type="text" class="form-control" id="doctorDesc" ng-model="newDoctor.description">
             <br>
             <label for="category">Category</label>
-            <select id="category" name="category" class="form-control" ng-init="getDoctorCategories()">
-                <option ng-repeat="category in allCategories">{{ category.name }}</option>
+            <select id="category" name="category" class="form-control" ng-model="newDoctor.categoryId" ng-init="getDoctorCategories()">
+                <option ng-repeat="category in allCategories" value="{{category.id}}">{{ category.name }}</option>
             </select>
             <br>
             <label for="ordination">Ordination</label>
-            <select name="ordination" id="ordination" class="form-control" ng-init="getOrdinations()">
+            <select name="ordination" id="ordination" class="form-control" ng-model="newDoctor.ordinationId" ng-init="getOrdinations()">
                 <option>None</option>
-                <option ng-repeat="ordination in ordinations">{{ ordination.name }}</option>
+                <option ng-repeat="ordination in ordinations" value="{{ordination.id}}">{{ ordination.name }}</option>
             </select>
             <br>
             <div class="alert alert-danger fade in" role="alert" ng-show="registrationError != null">

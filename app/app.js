@@ -1,20 +1,22 @@
 /**
  * Created by Uros Zivaljevic on 5/22/16.
  */
-var app = angular.module('doctorsApp', ['ngRoute']);
+var app = angular.module('doctorsApp', ['ngRoute', 'ui.bootstrap.datetimepicker']);
 
 //var baseUrl = "https://skript-projekat.herokuapp.com/api";
 var baseUrl = "http://localhost:3000/api";
 
 app.constant("BASE_URL", baseUrl);
 
-app.value('resources',{
+app.value('resources', {
     userLogin:      "/users/login",
     userRegister:   "/users/register",
     doctors:        "/doctors/",
     reviews:        "/reviews/",
     ordinations:    "/ordinations/",
-    categories:    "/categories/"
+    categories:     "/categories/",
+    book:           "/book/",
+    doctorReservations: "/reservations/"
 });
 
 app.config(function ($routeProvider) {

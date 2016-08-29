@@ -7,17 +7,12 @@ var app = angular.module('doctorsApp');
 app.controller('doctorRegistration', function ($scope, $rootScope, $http, $location, resources, BASE_URL) {
 
 
+    $scope.newDoctor = {};
+
     $scope.postDoctor = function () {
-        var ordinationId = 1;
-        var userId = $rootScope.currentUser.id;
-        var newDoctor = {
-            name: $scope.doctorName,
-            description: $scope.doctorDesc,
-            ordinationId: ordinationId,
-            userId: userId
-        };
-        $scope.newDoctorOrdinationId = ordinationId;
-        $http.post(BASE_URL + resources.doctors, newDoctor)
+
+        $scope.newDoctor.userId = $rootScope.currentUser.id;
+        $http.post(BASE_URL + resources.doctors, $scope.newDoctor)
             .then(function (response) {
                 $rootScope.currentUser.doctorId = response.data.id;
                 console.log(response.data);
@@ -31,7 +26,6 @@ app.controller('doctorRegistration', function ($scope, $rootScope, $http, $locat
             });
     };
 
-    //temp
     $scope.getOrdinations = function () {
         $http.get(BASE_URL + resources.ordinations)
             .then(function (response) {
