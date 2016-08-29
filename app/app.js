@@ -14,9 +14,11 @@ app.value('resources', {
     doctors:        "/doctors/",
     reviews:        "/reviews/",
     ordinations:    "/ordinations/",
+    articles:    "/articles/",
     categories:     "/categories/",
     book:           "/book/",
-    doctorReservations: "/reservations/"
+    doctorReservations: "/reservations/",
+    myProfile:      "/users/",
 });
 
 app.config(function ($routeProvider) {
@@ -55,6 +57,22 @@ app.config(function ($routeProvider) {
             templateUrl: 'registerDoctor.html',
             controller: 'doctorRegistration'
         })
+        .when('/myProfile', {
+            // resolve: authenticationResolver,
+            templateUrl: 'profile.html',
+            controller: 'users'
+        })
+        .when('/articles', {
+            // resolve: authenticationResolver,
+            templateUrl: 'articlesPage.html',
+            controller: 'articles'
+        })
+        .when('/articles/:id', {
+            // resolve: authenticationResolver,
+            templateUrl: 'articlePage.html',
+            controller: 'articles'
+        })
+
         .otherwise({
             redirectTo: '/'
         });

@@ -1,0 +1,18 @@
+<div class="row" ng-init="getArticle()">
+    <div class="well clearfix">
+        <div>
+            <h2>{{article.title}}</h2>
+        </div>
+        <div>
+            <div>
+                <img src="{{article.doctor.imageUrl}}" class="img img-circle text-right" width="70px" height="70px">
+                <p class="text-muted text-left"><i>{{article.doctor.name}}</i></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1">
+        <p>
+            {{article.content}}
+        </p>
+    </div>
+</div>

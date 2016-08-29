@@ -1,23 +1,21 @@
 <div class="row" ng-init="getOrdination()">
-    <div class="col-md-2">
-        <img class="img-responsive" ng-src="{{ ordination.imageUrl }}">
+    <div class="col-md-2 col-lg-2">
+        <img class="img-responsive" ng-src="{{ ordination.imageUrl }}" width="200px" height="200px">
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 col-lg-6">
         <h3> {{ ordination.name }} </h3>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-8 col-md-offset-2">
         <p>{{ ordination.description }}</p>
     </div>
 </div>
 <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="">
         <h3>Doctors in this ordination</h3>
         <div class="row">
             <div ng-repeat="doctor in ordination.doctors" class="col-lg-4 col-md-4">
                 <img src="{{ doctor.imageUrl }}" class="img img-responsive">
                 <strong>{{ doctor.name }}</strong>
+                <br>
+                <strong>Speciality: {{doctor.category.name}}</strong>
             </div>
         </div>
     </div>

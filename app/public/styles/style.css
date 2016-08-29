@@ -1,0 +1,19 @@
+.container {
+    border-right: 1px solid #efefef;
+    border-left: 1px solid #efefef;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color:black;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+.float-right {
+    text-align: right;
+}

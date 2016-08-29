@@ -4,7 +4,9 @@
 var app = angular.module('doctorsApp');
 
 
-app.controller('users', function ($scope, $rootScope, $http, $location, resources, BASE_URL) {
+app.controller('users', function ($scope, $rootScope, $http, $location, resources, Upload, BASE_URL) {
+
+    var imageFile = {};
 
     $scope.register = function () {
         var email = $scope.registerEmail;
@@ -12,17 +14,19 @@ app.controller('users', function ($scope, $rootScope, $http, $location, resource
         var firstname = $scope.registerFirstName;
         var lastname = $scope.registerLastName;
         var city = $scope.registerCity;
-        $http.post(BASE_URL+resources.userRegister,
-            {
+        Upload.upload({
+            url: BASE_URL+resources.userRegister,
+            data: {
                 firstname: firstname,
                 lastname: lastname,
                 password: password,
                 email: email,
-                city: city
-            }).then(function (response) {
-        }, function (response) {
+                city: city,
+                file: imageFile
+            }
+        }).then(function (response) {
             $scope.registrationError = response.data;
-        })
+        });
     };
 
     $scope.login = function() {
@@ -43,6 +47,18 @@ app.controller('users', function ($scope, $rootScope, $http, $location, resource
             function(response){
                 $scope.loginError = response.data;
             })
+    };
+
+    $scope.getMyUser = function () {
+        var userId = $rootScope.currentUser.id;
+        $http.get(BASE_URL + resources.myProfile + userId)
+            .then(function (response) {
+                $scope.user = response.data;
+            })
+    };
+
+    $scope.onFileSelect = function($file){
+        imageFile = $file;
     }
 
 });

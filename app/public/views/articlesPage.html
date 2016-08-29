@@ -1,0 +1,24 @@
+<div class="well well-lg">
+    <h2>Articles</h2>
+</div>
+<div class="alert alert-info" ng-show="showLoadingIndicator">Loading...</div>
+<div class="row" ng-init="getArticles()">
+    <div ng-repeat="article in articles" class="col-md-10 col-lg-10 col-lg-offset-1 col-md-offset-1">
+        <a ng-href="#/articles/{{ article.id }}">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="col-md-1 col-lg-1">
+                    <img src="{{article.doctor.imageUrl}}" class="img img-circle" width="60px" height="60px">
+                </div>
+                <div>
+                    <h4>{{article.title}}</h4>
+                    <i class="text-muted">Author: {{article.doctor.name}}</i>
+                </div>
+            </div>
+            <div class="panel-body">
+                {{article.content | limitTo: 300}}{{article.content.length > 300 ? '...' : ''}}
+            </div>
+        </div>
+        </a>
+    </div>
+</div>

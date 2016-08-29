@@ -4,6 +4,7 @@
             <li><a ng-href="#/home">Home</a></li>
             <li><a ng-href="#/ordinations">Ordinations</a></li>
             <li><a ng-href="#/doctors">Doctors</a></li>
+            <li><a ng-href="#/articles">Articles</a></li>
         </ul>
         <div ng-if="!currentUser">
             <ul class="nav navbar-nav navbar-right">
@@ -13,6 +14,12 @@
         <div ng-if="currentUser">
             <ul class="nav navbar-nav navbar-right">
                 <li><a ng-href="#/registerDoctor">Register As Doctor</a></li>
+                <li>
+                    <a ng-href="#/myProfile">
+                        <img ng-src="{{currentUser.imageUrl}}" class="img img-circle" width="20px" height="20px">
+                        {{currentUser.firstname + " " + currentUser.lastname}}
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

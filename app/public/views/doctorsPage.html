@@ -1,11 +1,18 @@
+<div class="well well-lg">
+    <h2>Doctors</h2>
+</div>
 <div class="alert alert-info" ng-show="showLoadingIndicator">Loading...</div>
 <div ng-init="getDoctors()">
-    <div ng-repeat="doctor in doctors" class="col-md-3">
-        <div>
-            <a ng-href="#/doctors/{{ doctor.id }}">
-                <img class="img-responsive" ng-src="{{ doctor.imageUrl }}">
-                {{ doctor.name }}
-            </a>
-        </div>
+    <div ng-repeat="doctor in doctors" class="col-lg-3 col-md-3">
+        <a ng-href="#/doctors/{{ doctor.id }}">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <img class="img-responsive" ng-src="{{ doctor.imageUrl }}">
+                </div>
+                <div class="panel-footer">
+                    <h4><span style="color:black;text-align: center;">{{ doctor.name }}</span></h4>
+                </div>
+            </div>
+        </a>
     </div>
 </div>

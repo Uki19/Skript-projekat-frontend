@@ -17,7 +17,7 @@
 </div>
 <div class="form-group col-md-6">
     <h2>Register</h2>
-    <form ng-submit="register()">
+    <form ng-submit="register()" enctype="multipart/form-data">
         <label for="registerFirstName">First name</label>
         <input type="text" class="form-control" id="registerFirstName" ng-model="registerFirstName">
         <br>
@@ -32,6 +32,9 @@
         <br>
         <label for="registerPassword">Password</label>
         <input type="password" class="form-control" id="registerPassword" ng-model="registerPassword">
+        <br>
+        <label for="userImage">Image</label>
+        <input type="file" class="form-control-file" id="userImage" name="file" accept="image/*" ngf-select="onFileSelect($file)">
         <br>
         <div class="alert alert-danger fade in" role="alert" ng-show="registrationError != null">
             <button type="button" class="close" data-dismiss="alert" aria-label="close">&times;</button>
