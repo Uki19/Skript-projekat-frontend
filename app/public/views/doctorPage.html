@@ -19,9 +19,9 @@
     <div class="col-md-8 col-md-offset-2">
         <h3>Book this doctor</h3>
         <datetimepicker data-ng-model="selectedDate.date"
-                        data-datetimepicker-config="{ startView:'hour', minView:'hour', modelType: 'h:mm A' }"
+                        data-datetimepicker-config="{ startView:'hour', minView:'hour', modelType: 'milliseconds' }"
                         data-before-render="checkAvailability($view, $dates, $leftDate, $upDate, $rightDate)"
-                        data-on-set-time="selectedHour(newDate, oldDate)">
+                        >
         </datetimepicker>
         <button class="btn btn-primary" ng-click="bookDoctor(doctor.id)">Book</button>
         <div class="alert alert-success" ng-show="showSuccess">Booking Successful</div>

@@ -4,19 +4,30 @@
 var app = angular.module('doctorsApp');
 
 
-app.controller('doctorRegistration', function ($scope, $rootScope, $http, $location, resources, BASE_URL) {
+app.controller('doctorRegistration', function ($scope, $rootScope, $http, Upload, $location, resources, BASE_URL) {
 
 
     $scope.newDoctor = {};
+    var imageFile = {};
 
-    $scope.postDoctor = function () {
+    $scope.postDoctor = function (file) {
 
         $scope.newDoctor.userId = $rootScope.currentUser.id;
-        $http.post(BASE_URL + resources.doctors, $scope.newDoctor)
-            .then(function (response) {
-                $rootScope.currentUser.doctorId = response.data.id;
-                console.log(response.data);
-            });
+        console.log(imageFile);
+        Upload.upload({
+            url: BASE_URL + resources.doctors,
+            data: {
+                name: $scope.newDoctor.name,
+                description: $scope.newDoctor.description,
+                ordinationId: $scope.newDoctor.ordinationId,
+                categoryId: $scope.newDoctor.categoryId,
+                userId: $scope.newDoctor.userId,
+                file: imageFile
+            }
+        }).then(function (response) {
+            $rootScope.currentUser.doctorId = response.data.id;
+            console.log(response.data);
+        });
     };
 
     $scope.getDoctorCategories = function () {
@@ -24,6 +35,10 @@ app.controller('doctorRegistration', function ($scope, $rootScope, $http, $locat
             .then(function (response) {
                 $scope.allCategories = response.data;
             });
+    };
+
+    $scope.onFileSelect = function ($file) {
+        imageFile = $file;
     };
 
     $scope.getOrdinations = function () {

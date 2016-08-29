@@ -1,7 +1,7 @@
 /**
  * Created by Uros Zivaljevic on 5/22/16.
  */
-var app = angular.module('doctorsApp', ['ngRoute', 'ui.bootstrap.datetimepicker']);
+var app = angular.module('doctorsApp', ['ngRoute', 'ui.bootstrap.datetimepicker', 'ngFileUpload']);
 
 //var baseUrl = "https://skript-projekat.herokuapp.com/api";
 var baseUrl = "http://localhost:3000/api";

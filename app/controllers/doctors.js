@@ -6,34 +6,6 @@ var app = angular.module('doctorsApp');
 
 app.controller('doctors', function ($scope, $rootScope, $http, $routeParams, BASE_URL, resources ) {
 
-    var hours = {
-        "12:00 AM": 1,
-        "1:00 AM": 2,
-        "2:00 AM": 3,
-        "3:00 AM": 4,
-        "4:00 AM": 5,
-        "5:00 AM": 6,
-        "6:00 AM": 7,
-        "7:00 AM": 8,
-        "8:00 AM": 9,
-        "9:00 AM": 10,
-        "10:00 AM": 11,
-        "11:00 AM": 12,
-        "12:00 PM": 13,
-        "1:00 PM": 14,
-        "2:00 PM": 15,
-        "3:00 PM": 16,
-        "4:00 PM": 17,
-        "5:00 PM": 18,
-        "6:00 PM": 19,
-        "7:00 PM": 20,
-        "8:00 PM": 21,
-        "9:00 PM": 22,
-        "10:00 PM": 23,
-        "11:00 PM": 24
-    };
-
-
     $scope.getDoctors = function () {
         $scope.showLoadingIndicator = true;
         $http.get(BASE_URL + resources.doctors)
@@ -44,7 +16,6 @@ app.controller('doctors', function ($scope, $rootScope, $http, $routeParams, BAS
     };
 
     $scope.getDoctor = function() {
-        console.log($routeParams.id);
         $http.get(BASE_URL + resources.doctors + $routeParams.id)
             .then(function (response) {
                 $scope.doctor = response.data;
@@ -53,7 +24,6 @@ app.controller('doctors', function ($scope, $rootScope, $http, $routeParams, BAS
 
 
     $scope.postDoctorReview = function() {
-        console.log($rootScope.currentUser);
         var newReview = {
             title: $scope.title,
             comment: $scope.comment,
@@ -68,7 +38,6 @@ app.controller('doctors', function ($scope, $rootScope, $http, $routeParams, BAS
                     lastname: $rootScope.currentUser.lastname
                 };
                 $scope.doctor.reviews.push(response.data);
-                // $scope.getDoctor();
             });
     };
 
@@ -76,20 +45,14 @@ app.controller('doctors', function ($scope, $rootScope, $http, $routeParams, BAS
 
     $scope.bookDoctor = function (doctorId) {
         var userId = $rootScope.currentUser.id;
-        var selectedHour = $scope.selectedDate.date;
-        var hourId = hours[selectedHour];
         $http.post(BASE_URL + resources.book,{
             userId: userId,
             doctorId: doctorId,
-            hourId: hourId
+            date: $scope.selectedDate.date
         })
             .then(function () {
                $scope.showSuccess = true;
             });
-    };
-
-    $scope.selectedHour = function (newDate, oldDate) {
-        console.log(newDate);
     };
 
     $scope.getDoctorsReservations = function (callback) {
@@ -103,11 +66,14 @@ app.controller('doctors', function ($scope, $rootScope, $http, $routeParams, BAS
     $scope.checkAvailability = function ($view, $dates, $leftDate, $upDate, $rightDate) {
         $scope.getDoctorsReservations(function (reservations) {
             for (var i = 0; i < $dates.length; i++) {
+                $dates[i].utcDateValue -= (2*60*60*1000);
                 if (i < 7 || i > 20) $dates[i].selectable = false;
+                for(var j=0; j < reservations.length; j++){
+                    if($dates[i].utcDateValue == reservations[j].date) {
+                        $dates[i].selectable = false;
+                    }
+                }
             }
-            reservations.forEach(function (reservation) {
-                $dates[reservation.hourId-1].selectable = false;
-            });
         });
 
     }

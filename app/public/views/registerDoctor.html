@@ -5,7 +5,7 @@
     <div class="col-md-3"></div>
     <div class="form-group col-md-6">
         <h2>Register as Doctor</h2>
-        <form ng-submit="postDoctor()">
+        <form ng-submit="postDoctor()" enctype="multipart/form-data">
             <label for="doctorName">Name</label>
             <input type="text" class="form-control" id="doctorName" ng-model="newDoctor.name"
                    placeholder="{{currentUser.firstname + ' ' + currentUser.lastname}}">
@@ -14,12 +14,14 @@
             <input type="text" class="form-control" id="doctorDesc" ng-model="newDoctor.description">
             <br>
             <label for="category">Category</label>
-            <select id="category" name="category" class="form-control" ng-model="newDoctor.categoryId" ng-init="getDoctorCategories()">
+            <select id="category" name="category" class="form-control" ng-model="newDoctor.categoryId"
+                    ng-init="getDoctorCategories()">
                 <option ng-repeat="category in allCategories" value="{{category.id}}">{{ category.name }}</option>
             </select>
             <br>
             <label for="ordination">Ordination</label>
-            <select name="ordination" id="ordination" class="form-control" ng-model="newDoctor.ordinationId" ng-init="getOrdinations()">
+            <select name="ordination" id="ordination" class="form-control" ng-model="newDoctor.ordinationId"
+                    ng-init="getOrdinations()">
                 <option>None</option>
                 <option ng-repeat="ordination in ordinations" value="{{ordination.id}}">{{ ordination.name }}</option>
             </select>
@@ -28,6 +30,9 @@
                 <button type="button" class="close" data-dismiss="alert" aria-label="close">&times;</button>
                 {{ registrationError }}
             </div>
+            <label for="doctorImage">Image</label>
+            <input type="file" class="form-control-file" id="doctorImage" name="file" accept="image/*" ngf-select="onFileSelect($file)">
+            <br>
             <button type="submit" class="btn btn-default">Register</button>
         </form>
     </div>
