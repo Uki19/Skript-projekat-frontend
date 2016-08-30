@@ -20,4 +20,11 @@ app.controller('ordinations', function ($scope, $http, $routeParams, BASE_URL, r
                 $scope.ordination = response.data;
             });
     }
+
+    $scope.getLatestOrdinations = function () {
+        $http.get(BASE_URL + resources.ordinationsLatest)
+            .then(function (response) {
+                $scope.ordinations = response.data;
+            });
+    };
 });

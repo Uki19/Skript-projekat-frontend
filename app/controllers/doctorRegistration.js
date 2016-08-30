@@ -25,8 +25,11 @@ app.controller('doctorRegistration', function ($scope, $rootScope, $http, Upload
                 file: imageFile
             }
         }).then(function (response) {
+            $scope.registrationSuccess = "Successfully registered!";
             $rootScope.currentUser.doctorId = response.data.id;
             console.log(response.data);
+        }, function (response) {
+            $scope.registrationError = "Failed to register!";
         });
     };
 

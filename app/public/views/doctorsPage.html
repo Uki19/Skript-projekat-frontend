@@ -2,12 +2,30 @@
     <h2>Doctors</h2>
 </div>
 <div class="alert alert-info" ng-show="showLoadingIndicator">Loading...</div>
-<div ng-init="getDoctors()">
+<div ng-init="initData()" class="row">
+    <div ng-controller="categories">
+        <div class="dropdown col-md-1 col-lg-1" ng-init="getDoctorCategories()">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                {{selectedCategory ? selectedCategory : "Category"}}
+                <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li ng-repeat="category in allCategories">
+                    <a ng-href="#/doctors/category/{{category.id}}">{{category.name}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-1 col-lg-1">
+            <a ng-href="#/doctors" class="btn btn-default">Clear</a>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
     <div ng-repeat="doctor in doctors" class="col-lg-3 col-md-3">
         <a ng-href="#/doctors/{{ doctor.id }}">
             <div class="panel panel-default">
-                <div class="panel-body">
-                    <img class="img-responsive" ng-src="{{ doctor.imageUrl }}">
+                <div class="panel-body parent">
+                    <img class="img-responsive img-square" ng-src="{{ doctor.imageUrl }}">
                 </div>
                 <div class="panel-footer">
                     <h4><span style="color:black;text-align: center;">{{ doctor.name }}</span></h4>

@@ -2,8 +2,17 @@
     <h2>Ordinations</h2>
 </div>
 <div class="alert alert-info" ng-show="showLoadingIndicator">Loading...</div>
-<div ng-init="getOrdinations()">
-    <ul ng-repeat="ordination in ordinations">
-        <li><a ng-href="#/ordinations/{{ ordination.id }}">{{ ordination.name }}</a></li>
-    </ul>
+<div class="row" ng-controller="ordinations" ng-init="getOrdinations()">
+    <div ng-repeat="ordination in ordinations" class="col-lg-4 col-md-4">
+        <a ng-href="#/ordinations/{{ ordination.id }}">
+            <div class="panel panel-default">
+                <div class="panel-body parent">
+                    <img class="img-responsive img-square" ng-src="{{ ordination.images[0].url }}">
+                </div>
+                <div class="panel-footer">
+                    <h4><span style="color:black;text-align: center;">{{ ordination.name }}</span></h4>
+                </div>
+            </div>
+        </a>
+    </div>
 </div>

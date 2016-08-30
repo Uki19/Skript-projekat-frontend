@@ -14,6 +14,15 @@ a:hover {
     cursor:pointer;
 }
 
-.float-right {
-    text-align: right;
+.parent {
+    width: 100%;
+    height: 250px;
 }
+
+.img-square {
+    object-fit: cover;
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+

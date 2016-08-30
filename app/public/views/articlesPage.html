@@ -1,5 +1,8 @@
 <div class="well well-lg">
     <h2>Articles</h2>
+    <a ng-href="#/newArticle" class="btn btn-primary">
+        Write new article!
+    </a>
 </div>
 <div class="alert alert-info" ng-show="showLoadingIndicator">Loading...</div>
 <div class="row" ng-init="getArticles()">
@@ -8,7 +11,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="col-md-1 col-lg-1">
-                    <img src="{{article.doctor.imageUrl}}" class="img img-circle" width="60px" height="60px">
+                    <img ng-src="{{article.doctor.imageUrl}}" class="img img-circle" width="60px" height="60px">
                 </div>
                 <div>
                     <h4>{{article.title}}</h4>

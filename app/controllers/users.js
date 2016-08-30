@@ -25,6 +25,10 @@ app.controller('users', function ($scope, $rootScope, $http, $location, resource
                 file: imageFile
             }
         }).then(function (response) {
+            if(response.status == 201){
+                $scope.registrationSuccess = "success";
+            }
+        }, function (response) {
             $scope.registrationError = response.data;
         });
     };
@@ -40,9 +44,15 @@ app.controller('users', function ($scope, $rootScope, $http, $location, resource
                 password: password
             })
             .then(function(response){
-                $rootScope.currentUser = response.data;
-                console.log($rootScope.currentUser);
-                $location.path('/home');
+                    if(response.status == 200) {
+                        $scope.loginSuccess = "success";
+                        $rootScope.currentUser = response.data;
+                        console.log($rootScope.currentUser);
+                        $location.path('/home');
+                    }
+
+
+
             },
             function(response){
                 $scope.loginError = response.data;

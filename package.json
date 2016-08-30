@@ -1,0 +1,23 @@
+{
+  "name": "skript-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Uki19/Skript-projekat-frontend.git"
+  },
+  "author": "Uros Zivaljevic",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Uki19/Skript-projekat-frontend/issues"
+  },
+  "homepage": "https://github.com/Uki19/Skript-projekat-frontend#readme",
+  "dependencies": {
+    "angular-bootstrap-datetimepicker": "^1.0.1",
+    "moment": "^2.14.1"
+  }
+}

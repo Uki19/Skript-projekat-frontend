@@ -1,3 +1,54 @@
-<div>
-    <p>Welcome {{ currentUser.firstname + " " + currentUser.lastname }}</p>
+<div class="well">
+    <h2>Welcome {{ currentUser.firstname + " " + currentUser.lastname }}</h2>
+</div>
+<h3>Newest doctors</h3>
+<div class="row" ng-controller="doctors" ng-init="getLatestDoctors()">
+    <div ng-repeat="doctor in doctors" class="col-lg-3 col-md-3">
+        <a ng-href="#/doctors/{{ doctor.id }}">
+            <div class="panel panel-default">
+                <div class="panel-body parent">
+                    <img class="img-responsive img-square" ng-src="{{ doctor.imageUrl }}">
+                </div>
+                <div class="panel-footer">
+                    <h4><span style="color:black;text-align: center;">{{ doctor.name }}</span></h4>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+<h3>Newest Ordinations</h3>
+
+<div class="row" ng-controller="ordinations" ng-init="getLatestOrdinations()">
+    <div ng-repeat="ordination in ordinations" class="col-lg-3 col-md-3">
+        <a ng-href="#/ordinations/{{ ordination.id }}">
+            <div class="panel panel-default">
+                <div class="panel-body parent">
+                    <img class="img-responsive img-square" ng-src="{{ ordination.images[0].url }}">
+                </div>
+                <div class="panel-footer">
+                    <h4><span style="color:black;text-align: center;">{{ ordination.name }}</span></h4>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+<h3>Newest Articles</h3>
+<div class="row" ng-controller="articles">
+    <div ng-init="getLatestArticles()">
+        <div ng-repeat="article in articles" class="col-md-3 col-lg-3">
+            <a ng-href="#/articles/{{article.id}}">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>{{article.title | limitTo: 20}}</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>{{article.content | limitTo: 100}}{{article.content.length > 100 ? '...' : ''}}</p>
+                    </div>
+                    <div class="panel-footer">
+                        <p>Author: {{article.doctor.name}}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
 </div>

@@ -1,3 +1,51 @@
 <div class="row" ng-init="getMyUser()">
-    {{user.firstname}}
+    <div class="col-md-2 col-lg-2">
+        <img ng-src="{{user.imageUrl}}" class="img img-circle" height="100px" width="100px">
+    </div>
+    <div class="col-md-10 col-lg-10">
+        <h3>{{user.firstname + " " + user.lastname}}</h3>
+    </div>
+</div>
+<div class="row" ng-if="user.doctorId">
+    <h3>Your info as doctor</h3>
+    <div class="col-md-2 col-lg-2">
+        <img ng-src="{{user.doctor.imageUrl}}" class="img img-circle" height="100px" width="100px">
+    </div>
+    <div class="col-md-10 col-lg-10">
+        <h3>{{user.doctor.name}}</h3>
+        <strong><p>{{user.doctor.category.name}}</p></strong>
+        <p>{{user.doctor.description}}</p>
+    </div>
+    <h4>Your articles:</h4>
+    <div class="panel panel-default" ng-repeat="article in user.doctor.articles">
+        <div class="panel-heading">
+            <h5>{{article.title}}</h5>
+        </div>
+        <div class="panel-body">
+            {{article.content | limitTo: 300}}{{article.content.length > 300 ? '...' : ''}}
+        </div>
+    </div>
+</div>
+<h3>Your reservations:</h3>
+<div class="row">
+    <div class="panel panel-default" ng-repeat="reservation in user.reservations">
+        <div class="panel-body">
+            <strong>Date:</strong> {{reservation.date | date:'yyyy/MM/dd H:mm a'}} - <strong>Doctor: </strong> <a
+                ng-href="#/doctors/{{reservation.doctor.id}}">{{reservation.doctor.name}}</a>
+        </div>
+    </div>
+</div>
+<h3>Reviews you've written:</h3>
+<div class="row">
+    <div class="panel panel-default" ng-repeat="review in user.reviews">
+        <div class="panel-heading">
+            <h4>{{review.title}}</h4>
+        </div>
+        <div class="panel-body">
+            {{review.comment}}
+        </div>
+        <div class="panel-footer">
+            Review for: {{review.doctor.name}}
+        </div>
+    </div>
 </div>
